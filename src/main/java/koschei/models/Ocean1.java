@@ -1,16 +1,20 @@
 package koschei.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Ocean1 {
 
-    @Autowired
-    private Island2 island;
+
+    private final Island2 getIsland;
+
+    public Ocean1(@Qualifier("getIsland") Island2 getIsland) {
+        this.getIsland = getIsland;
+    }
 
     @Override
     public String toString() {
-        return "на океане остров " + island.toString();
+        return "на океане остров " + getIsland.toString();
     }
 }
